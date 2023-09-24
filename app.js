@@ -23,21 +23,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-function loadMusicData() {
-  fs.readFile('music.json', 'utf8', (err, data) => {
-    if (!err) {
-      try {
-        musicTracks = JSON.parse(data);
-        console.log('Music data loaded from music.json');
-      } catch (parseError) {
-        console.error('Error parsing music data:', parseError);
-      }
-    }
-  });
-}
-
-// Load music data from music.json during server startup
-loadMusicData();
 
 function saveMusicData() {
     const jsonData = JSON.stringify(musicTracks, null, 2);
@@ -50,18 +35,6 @@ function saveMusicData() {
       }
     });
   }
-
-  // Load music data from music.json if it exists
-fs.readFile('music.json', 'utf8', (err, data) => {
-    if (!err) {
-      try {
-        musicTracks = JSON.parse(data);
-        console.log('Music data loaded from music.json');
-      } catch (parseError) {
-        console.error('Error parsing music data:', parseError);
-      }
-    }
-  });
   
 
 app.post('/api/music/tracks', upload.single('mp3'), (req, res) => {
