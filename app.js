@@ -11,7 +11,7 @@ app.use(express.json()); // Use express.json() for parsing JSON data
 
 // Define a storage engine for multer
 const storage = multer.diskStorage({
-  destination: './uploads/', // Define the destination folder for uploaded files
+  destination: './var/task/uploads', // Define the destination folder for uploaded files
   filename: function (req, file, cb) {
     // Generate a unique filename with the .mp3 extension
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
